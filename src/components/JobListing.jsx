@@ -23,7 +23,7 @@ const JobListing = ({ job }) => {
                         {job.location}
                     </div>
                     <a
-                        href="job.html"
+                        href={`/job/${job.id}`}
                         class="h-[36px] bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg text-center text-sm"
                     >
                         Read More
