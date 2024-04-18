@@ -1,35 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import { FaArrowLeft } from 'react-icons/fa'
+import { Link, useParams, useLoaderData } from 'react-router-dom'
+import { FaArrowLeft, FaMapMarker } from 'react-icons/fa'
 
 const JobPage = () => {
 
-
-
     const { id } = useParams();
-    const apiUrl = `http://localhost:8000/jobs/${id}`;
 
-    const [job, setJob] = useState({});
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-
-        const fetchJob = async () => {
-            try {
-                const res = await fetch(apiUrl);
-                const data = await res.json();
-                setJob(data);
-            } catch (error) {
-                console.log('fetch error: '.error);
-            } finally {
-                setLoading(false);
-            }
-        }
-
-        fetchJob();
-
-
-    }, []);
+    const job = useLoaderData();
+    // console.log(job);
 
 
 
@@ -63,7 +40,7 @@ const JobPage = () => {
                                     <i
                                         className="fa-solid fa-location-dot text-lg text-orange-700 mr-2"
                                     ></i>
-                                    <p className="text-orange-700">{job.location}</p>
+                                    <FaMapMarker className="text-orange-700 mr-1" />{job.location}
                                 </div>
                             </div>
 
@@ -86,12 +63,12 @@ const JobPage = () => {
                             <div className="bg-white p-6 rounded-lg shadow-md">
                                 <h3 className="text-xl font-bold mb-6">Company Info</h3>
 
-                                <h2 className="text-2xl">Company Name</h2>
-                                {/* <h2 className="text-2xl">{job.company.name}</h2> */}
+                                {/* <h2 className="text-2xl">Company Name</h2> */}
+                                <h2 className="text-2xl">{job.company.name}</h2>
 
                                 <p className="my-2">
-                                    {/* {job.company.description} */}
-                                    Job description
+                                    {job.company.description}
+                                    {/* Job description */}
                                 </p>
 
                                 <hr className="my-4" />
@@ -99,21 +76,20 @@ const JobPage = () => {
                                 <h3 className="text-xl">Contact Email:</h3>
 
                                 <p className="my-2 bg-indigo-100 p-2 font-bold">
-                                    contact@newteksolutions.com
+                                    {job.company.contactEmail}
                                 </p>
 
                                 <h3 className="text-xl">Contact Phone:</h3>
 
-                                <p className="my-2 bg-indigo-100 p-2 font-bold">555-555-5555</p>
+                                <p className="my-2 bg-indigo-100 p-2 font-bold">  {job.company.contactPhone}</p>
                             </div>
 
                             <div className="bg-white p-6 rounded-lg shadow-md mt-6">
                                 <h3 className="text-xl font-bold mb-6">Manage Job</h3>
-                                <a
-                                    href="/add-job.html"
+                                <Link
+                                    to={`/jobs/edit/${job.id}`}
                                     className="bg-indigo-500 hover:bg-indigo-600 text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
-                                >Edit Job</a
-                                >
+                                >Edit Job</Link>
                                 <button
                                     className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
                                 >
@@ -122,10 +98,18 @@ const JobPage = () => {
                             </div>
                         </aside>
                     </div>
-                </div>
-            </section>
+                </div >
+            </section >
         </>
     )
-}
+};
 
-export default JobPage
+
+{/* data loader function */ }
+const jobLoader = async ({ params }) => {
+    const res = await fetch(`http://localhost:8000/jobs/${params.id}`);
+    const data = res.json();
+    return data;
+};
+
+export { JobPage as default, jobLoader };
