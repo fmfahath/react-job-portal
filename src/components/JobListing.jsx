@@ -24,7 +24,7 @@ const JobListing = ({ job }) => {
 
                 </div>
 
-                <button onClick={() => setShowFullDesc(!showFullDesc)} className='text-indigo-500 mb-5 hover:text-indigo-600'>More</button>
+                <button onClick={() => setShowFullDesc(!showFullDesc)} className='text-indigo-500 mb-5 hover:text-indigo-600'>More..</button>
 
                 <h3 className="text-indigo-500 mb-2">{job.salary} / year</h3>
 
