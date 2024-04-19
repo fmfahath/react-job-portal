@@ -97,6 +97,20 @@
         "contactEmail": "ifs@gmail.com",
         "contactPhone": "3243534534"
       }
+    },
+    {
+      "id": "c9be",
+      "title": "Back-End Developer",
+      "type": "Full-Time",
+      "location": "Colombo",
+      "description": "React jS, Node.js, Express.js expericenced developer,\nFamiliar with Laravel",
+      "salary": "$90K - 100K",
+      "company": {
+        "name": "99X",
+        "description": "Software Company",
+        "contactEmail": "99x@gmail.com",
+        "contactPhone": "46456456"
+      }
     }
   ]
 }
