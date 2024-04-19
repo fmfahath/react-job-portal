@@ -83,6 +83,20 @@
         "contactEmail": "contact@ipsumlorem.com",
         "contactPhone": "555-555-5555"
       }
+    },
+    {
+      "id": "200b",
+      "title": "DevOps - React",
+      "type": "Part-Time",
+      "location": "Colombo",
+      "description": "DevOps eng with React, MERN stack experience",
+      "salary": "$100K - 125K",
+      "company": {
+        "name": "IFS",
+        "description": "Leading Software Solution Provides based in London",
+        "contactEmail": "ifs@gmail.com",
+        "contactPhone": "3243534534"
+      }
     }
   ]
 }
